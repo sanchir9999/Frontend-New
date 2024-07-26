@@ -1,6 +1,6 @@
 "use client";
 
-
+import { AddRecord } from './AddRecord';
 import { useState } from 'react';
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -44,18 +44,21 @@ export const Container = () => {
         "Food & Drinks",
         "Food & Drinks",
         "Food & Drinks",
-
     ]);
     return (
         <>
-            <div className=" m-auto bg-[#F3F4F6]">
-                <div className="flex m-auto w-full justify-center gap-6">
-                    <div className="w-[282px] h-[1080px] border-4 flex justify-start flex-col gap-[24px] px-[16px]">
+            <div className=" m-auto bg-[#F3F4F6] pt-6">
+                <div className="flex m-auto w-full justify-center gap-6 ">
+                    <div className="w-[282px] bg-white border-[1px] rounded-xl border-[#E5E7EB] flex justify-start flex-col gap-[24px] px-[16px] pt-6 ">
                         <div className="flex flex-col gap-[24px]">
-                            <div><h3 className="font-semibold text-2xl">Records</h3></div>
-                            <div><Button className="bg-blue-500 w-full">+ Add</Button></div>
+                            <div><h3 className="font-semibold text-2xl ">Records</h3></div>
+                            <div>
+                                <AddRecord>
+                                    + Add
+                                </AddRecord>
+                            </div>
                         </div>
-                        <div><Input placeholder="search" /></div>
+                        <div><Input placeholder="Search" /></div>
                         <div className="flex flex-col gap-[16px] font-semibold text-base">
                             <div className="">
                                 <h3>Types</h3>
@@ -104,14 +107,14 @@ export const Container = () => {
                             </div>
                             <div className="flex flex-col gap-6">
                                 <div className='flex gap-4'>
-                                    <Button className="bg-slate-200 w-full text-zinc-950"> {value[0]}</Button>
-                                    <Button className="bg-slate-200 w-full text-zinc-950"> {value[1]}</Button>
+                                    <Button className="bg-[#F3F4F6] border-[1px] w-full  text-[#0F172A] font-normal"> {value[0]}</Button>
+                                    <Button className="bg-[#F3F4F6] border-[1px] w-full text-[#0F172A] font-normal"> {value[1]}</Button>
                                 </div>
                                 <Slider value={value} onValueChange={handleChange} min={0} max={1000} step={1} />
                             </div>
                         </div>
                     </div>
-                    <div className=" h-[1080px]  overflow-x-scroll">
+                    <div className='flex flex-col'>
                         <div className="w-[894px] h-[80px] flex justify-between items-center">
                             <div className="flex justify-center items-center gap-4">
                                 <Button className="bg-[#E5E7EB]"><ZuunSum /></Button>
@@ -120,57 +123,58 @@ export const Container = () => {
                             </div>
                             <ComboboxDemo />
                         </div>
-                        <div className="h-[980px] w-[894px] ">
-                            <div className="flex justify-between px-6">
-                                <div><Checkbox />Select All</div>
-                                <div>- 35,500₮</div>
-                            </div>
-                            <div>
-                                <div className='font-semibold text-base'>Today</div>
-                                <div className="flex justify-between px-6 items-center">
-                                    <div className='flex justify-between border-4 items-center gap-4'><Checkbox /><House />
-                                        <div>
-                                            <div>Lending & Renting</div>
-                                            <div className='opacity-60'>14:00</div>
-                                        </div>
-                                    </div>
-                                    <div className='border-4 rounded-sm'>- 1,000₮</div>
+                        <div className=" h-[1080px] overflow-x-scroll flex gap-y-6 flex-col">
+                            <div className="h-[980px] w-[894px]">
+                                <div className="flex w-full h-[64px] border-[1px] rounded-xl border-[#E5E7EB] justify-between items-center px-6">
+                                    <div className='flex flex-row items-center gap-x-4'><Checkbox />Select All</div>
+                                    <div className='text-[#94A3B8] font-semibold'>- 35,500₮</div>
                                 </div>
-                            </div>
-                            <div>
-                                {boxes && boxes.map((box, index) => (
-                                    <div key={index} className="flex border-4 justify-between px-6 items-center">
-                                        <div className='flex justify-between items-center gap-4'>
-                                            <Checkbox />
-                                            <RedHouse />
+                                <div className='flex flex-col gap-y-3'>
+
+                                    <div className='font-semibold text-base pt-6'>Today</div>
+                                    <div className="flex h-[64px] justify-between bg-white px-6 items-center border-[1px] rounded-xl border-[#E5E7EB]">
+                                        <div className='flex justify-between rounded-md items-center gap-4'><Checkbox /><House />
                                             <div>
-                                                {box}
                                                 <div>Lending & Renting</div>
                                                 <div className='opacity-60'>14:00</div>
                                             </div>
                                         </div>
-                                        <div >- 1,000₮</div>
+                                        <div className='rounded-sm font-semibold text-[#23E01F]'>- 1,000₮</div>
                                     </div>
-                                ))}
-
-                            </div>
-                            <div className='w-[894px]'>
-                                <div className='flex flex-col justify-center items-center gap-y-4'>
-                                    <div className=' font-semibold text-base'>Yesterday</div>
                                     {boxes && boxes.map((box, index) => (
-                                        <div key={index} className="flex w-full justify-between px-6 items-center ">
+                                        <div key={index} className="flex h-[64px] bg-white border-[1px] rounded-xl border-[#E5E7EB] justify-between px-6 items-center">
                                             <div className='flex justify-between items-center gap-4'>
                                                 <Checkbox />
                                                 <RedHouse />
                                                 <div>
                                                     {box}
-                                                    <div>Lending & Renting</div>
+
                                                     <div className='opacity-60'>14:00</div>
                                                 </div>
                                             </div>
-                                            <div>- 1,000₮</div>
+                                            <div className='text-[#EAB308] font-semibold' >- 1,000₮</div>
                                         </div>
                                     ))}
+
+                                </div>
+                                <div className='w-[894px]'>
+                                    <div className='flex flex-col gap-y-4'>
+                                        <div className='font-semibold text-base pt-6'>Yesterday</div>
+                                        {boxes && boxes.map((box, index) => (
+                                            <div key={index} className="flex w-full border-[1px] rounded-xl border-[#E5E7EB] justify-between px-6 items-center ">
+                                                <div className='flex justify-between items-center gap-4'>
+                                                    <Checkbox />
+                                                    <RedHouse />
+                                                    <div>
+                                                        {box}
+
+                                                        <div className='opacity-60'>14:00</div>
+                                                    </div>
+                                                </div>
+                                                <div className='text-[#EAB308] font-semibold'>- 1,000₮</div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>

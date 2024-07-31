@@ -23,8 +23,8 @@ const Loading = () => {
                     }
                     return prev - 1;
                 });
-            }, 1000); // 1 секунд
-        }, 5000); // 5 секунд
+            }, 350); // 1 секунд
+        }, 50); // 5 секунд
 
         return () => {
             clearTimeout(loadingTimer);

@@ -81,7 +81,6 @@ export const AddRecord = () => {
                         </div>
                     </div>
                 </div>
-
             </DialogContent>
         </Dialog >
     )

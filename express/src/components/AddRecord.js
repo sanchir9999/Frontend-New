@@ -1,3 +1,4 @@
+"use client"
 import { CalendarForm } from "@/components/CalendarForm"
 import {
     Select,
@@ -15,7 +16,42 @@ import { Input } from "./ui/input"
 import { TimeForm } from "./TimeForm"
 import { Link } from "lucide-react"
 import CatergoryButton from "@/components/CategoryButton"
+import { useEffect } from "react"
+import { useState } from "react"
+import { Button } from "./ui/button"
+import axios from "axios"
 export const AddRecord = () => {
+
+    const [amount, setAmount] = useState("")
+    const [note, setNote] = useState("")
+    const [accounts, setAccounts] = useState([])
+    useEffect(() => {
+        const getData = async () => {
+            const response = await axios.get("http://localhost:3001/accounts");
+            setAccounts(response.data);
+        };
+        getData();
+
+    }, [])
+    const createAccount = async () => {
+        const newAccount = {
+            amount,
+            note,
+        };
+        try {
+            await axios.post("http://localhost:3001/accounts", newAccount);
+            // Refresh account list after adding new account
+            const response = await axios.get("http://localhost:3001/accounts");
+            setAccounts(response.data);
+            // Reset form
+            setAmount("");
+            setNote("");
+        } catch (error) {
+            console.error("Error creating account:", error);
+        }
+    };
+
+
     return (
         <Dialog>
             <DialogTrigger className="w-full bg-[#0166FF] text-white rounded-[20px] h-[40px] flex justify-center items-center">
@@ -34,8 +70,22 @@ export const AddRecord = () => {
                     <div className="w-full">
                         <div className="mb-4">
                             <span className="block mb-2">Amount</span>
-                            <Input placeholder="₮ 000.00" />
+                            <Input
+                                className="border"
+                                value={amount}
+                                onChange={(event) => setAmount(event.target.value)}
+                            />
                         </div>
+                        <div className="mb-4">
+                            <span className="block mb-2">Note</span>
+                            <Input
+                                placeholder="Write here"
+                                className="w-full h-[280px]"
+                                value={note}
+                                onChange={(event) => setNote(event.target.value)}
+                            />
+                        </div>
+
                         <div className="mb-4">
                             <span className="block mb-2">Category</span>
                             <Select>
@@ -57,9 +107,17 @@ export const AddRecord = () => {
                                 <TimeForm />
                             </div>
                         </div>
-                        <div className="bg-[#0166FF] text-white rounded-[20px] h-[40px] flex justify-center items-center mt-4">
+                        <ul>
+                            {accounts.map((account, index) => (
+                                <li key={account.note + index}>
+                                    {account.note} - {account.amount}
+                                </li>
+                            ))}
+                        </ul>
+                        <Button onClick={createAccount} className="bg-[#0166FF] text-white rounded-[20px] h-[40px] flex justify-center items-center mt-4">
                             Add Record
-                        </div>
+                        </Button>
+
                     </div>
                 </div>
                 <div>

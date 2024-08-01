@@ -1,7 +1,7 @@
 "use client";
 
 import { AddRecord } from './AddRecord';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,19 +32,13 @@ const data = [
 ];
 
 export const Container = () => {
+
     const [value, setValue] = useState([0, 1000]); // Slider-ийн үзүүлэлтийг хадгалах useState
 
     const handleChange = (newValue) => {
         setValue(newValue); // Slider-ийн үзүүлэлт өөрчлөгдөх үед шинэчилнэ
     };
-    const [boxes, setBoxes] = useState([
-        "Food & Drinks",
-        "Food & Drinks",
-        "Food & Drinks",
-        "Food & Drinks",
-        "Food & Drinks",
-        "Food & Drinks",
-    ]);
+
     return (
         <>
             <div className=" m-auto bg-[#F3F4F6] pt-6">
@@ -132,49 +126,10 @@ export const Container = () => {
                                 <div className='flex flex-col gap-y-3'>
 
                                     <div className='font-semibold text-base pt-6'>Today</div>
-                                    <div className="flex h-[64px] justify-between bg-white px-6 items-center border-[1px] rounded-xl border-[#E5E7EB]">
-                                        <div className='flex justify-between rounded-md items-center gap-4'><Checkbox /><House />
-                                            <div>
-                                                <div>Lending & Renting</div>
-                                                <div className='opacity-60'>14:00</div>
-                                            </div>
-                                        </div>
-                                        <div className='rounded-sm font-semibold text-[#23E01F]'>- 1,000₮</div>
-                                    </div>
-                                    {boxes && boxes.map((box, index) => (
-                                        <div key={index} className="flex h-[64px] bg-white border-[1px] rounded-xl border-[#E5E7EB] justify-between px-6 items-center">
-                                            <div className='flex justify-between items-center gap-4'>
-                                                <Checkbox />
-                                                <RedHouse />
-                                                <div>
-                                                    {box}
-
-                                                    <div className='opacity-60'>14:00</div>
-                                                </div>
-                                            </div>
-                                            <div className='text-[#EAB308] font-semibold' >- 1,000₮</div>
-                                        </div>
-                                    ))}
 
                                 </div>
                                 <div className='w-[894px]'>
-                                    <div className='flex flex-col gap-y-4'>
-                                        <div className='font-semibold text-base pt-6'>Yesterday</div>
-                                        {boxes && boxes.map((box, index) => (
-                                            <div key={index} className="flex w-full border-[1px] rounded-xl border-[#E5E7EB] justify-between px-6 items-center ">
-                                                <div className='flex justify-between items-center gap-4'>
-                                                    <Checkbox />
-                                                    <RedHouse />
-                                                    <div>
-                                                        {box}
 
-                                                        <div className='opacity-60'>14:00</div>
-                                                    </div>
-                                                </div>
-                                                <div className='text-[#EAB308] font-semibold'>- 1,000₮</div>
-                                            </div>
-                                        ))}
-                                    </div>
                                 </div>
                             </div>
                         </div>

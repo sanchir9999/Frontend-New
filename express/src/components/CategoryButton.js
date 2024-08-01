@@ -3,7 +3,9 @@ const CategoryButton = () => {
     const [category, setCategory] = useState('income');
 
     const handleClick = () => {
-        setCategory(category === 'income' ? 'expense' : 'income');
+        setCategory(category === 'income' ? 'expense' : 'income'
+
+        );
     };
 
     return (

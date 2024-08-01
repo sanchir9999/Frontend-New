@@ -1,9 +1,15 @@
 const express = require('express');
-const router = express.Router();
+const cors = require("cors")
+const { accountRouter } = require("./routes/account.route")
 
-// Define your routes and handlers
-router.get('/somepath', (req, res) => {
-    res.send('Some response');
-});
+const app = express();
 
-module.exports = { accountRouter: router };
+app.use(cors());
+app.use(express.json())
+
+app.use("/accounts", accountRouter);
+app.use(express.json());
+
+app.listen(3001, () => {
+    console.log("Сервер ажиллаж байна 3001")
+})

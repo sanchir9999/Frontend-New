@@ -1,56 +1,59 @@
-"use client"
-import { CalendarForm } from "@/components/CalendarForm"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { CalendarForm } from "@/components/CalendarForm";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "./ui/input"
-import { TimeForm } from "./TimeForm"
-import { Link } from "lucide-react"
-import CatergoryButton from "@/components/CategoryButton"
-import { useEffect } from "react"
-import { useState } from "react"
-import { Button } from "./ui/button"
-import axios from "axios"
+} from "@/components/ui/select";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "./ui/input";
+import { TimeForm } from "./TimeForm";
+import { Button } from "./ui/button";
 export const AddRecord = () => {
+    const [accounts, setAccounts] = useState([]);
+    const [amount, setAmount] = useState("");
+    const [note, setNote] = useState("");
+    const [backgroundColor, setBackgroundColor] = useState('green'); // Товчлуурын өнгийг хадгалах стэйт
 
-    const [amount, setAmount] = useState("")
-    const [note, setNote] = useState("")
-    const [accounts, setAccounts] = useState([])
-    useEffect(() => {
-        const getData = async () => {
-            const response = await axios.get("http://localhost:3001/accounts");
-            setAccounts(response.data);
-        };
-        getData();
-
-    }, [])
-    const createAccount = async () => {
-        const newAccount = {
-            amount,
-            note,
-        };
-        try {
-            await axios.post("http://localhost:3001/accounts", newAccount);
-            // Refresh account list after adding new account
-            const response = await axios.get("http://localhost:3001/accounts");
-            setAccounts(response.data);
-            // Reset form
-            setAmount("");
-            setNote("");
-        } catch (error) {
-            console.error("Error creating account:", error);
-        }
+    const handleClick = () => {
+        // Өнгийг `blue` ба `green` хооронд шилжүүлнэ
+        setBackgroundColor(prevColor => prevColor === 'green' ? 'blue' : 'green');
     };
 
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await axios.get("http://localhost:3001/accounts");
+                if (Array.isArray(response.data)) {
+                    setAccounts(response.data);
+                } else {
+                    console.error("Expected array but got", response.data);
+                }
+            } catch (error) {
+                console.error("Error fetching accounts:", error);
+            }
+        };
+        getData();
+    }, []);
+
+    const createAccount = async () => {
+        const newAccount = { amount, note };
+        try {
+            await axios.post("http://localhost:3001/accounts", newAccount);
+            // Дахин бүх accounts-ийг авах
+            const response = await axios.get("http://localhost:3001/accounts");
+            if (Array.isArray(response.data)) {
+                setAccounts(response.data);
+            } else {
+                console.error("", response.data);
+            }
+        } catch (error) {
+            console.error("", error);
+        }
+    };
 
     return (
         <Dialog>
@@ -58,13 +61,21 @@ export const AddRecord = () => {
                 + Add
             </DialogTrigger>
             <DialogContent className="w-[792px] flex flex-row items-start justify-between">
-
                 <div className="flex flex-col">
                     <div>Add Record</div>
-                    <div className="w-full ">
-                        <div className="flex mb-4 border-[1px] rounded-xl border-[#E5E7EB]">
-                            <div className="w-[172px] bg-[#0166FF] text-white rounded-[20px] h-[40px] flex justify-center items-center">Expense</div>
-                            <CatergoryButton />
+                    <div className="w-full">
+                        <div className="flex mb-4 border-[1px] rounded-[20px] border-[#E5E7EB]">
+                            <div
+                                className="w-full text-white rounded-[20px] h-[40px] flex justify-center items-center"
+                                onClick={handleClick}
+                                style={{ backgroundColor }} // Өнгийг тохируулна
+                            >
+                                Expense
+                            </div>
+                            <div className="w-full text-white rounded-[20px] h-[40px] flex justify-center items-center"
+                                onClick={handleClick}
+                                style={{ backgroundColor }} // Өнгийг тохируулна
+                            >Income</div>
                         </div>
                     </div>
                     <div className="w-full">
@@ -85,7 +96,6 @@ export const AddRecord = () => {
                                 onChange={(event) => setNote(event.target.value)}
                             />
                         </div>
-
                         <div className="mb-4">
                             <span className="block mb-2">Category</span>
                             <Select>
@@ -99,25 +109,29 @@ export const AddRecord = () => {
                                 </SelectContent>
                             </Select>
                         </div>
-                        <div className=" grid grid-cols-2 gap-4">
-                            <div >
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
                                 <CalendarForm />
                             </div>
-                            <div >
+                            <div>
                                 <TimeForm />
                             </div>
                         </div>
                         <ul>
-                            {accounts.map((account, index) => (
-                                <li key={account.note + index}>
-                                    {account.note} - {account.amount}
-                                </li>
-                            ))}
+                            {
+                                accounts.map((account, index) => (
+                                    <li key={account?.note + index}>
+                                        {account?.note} - {account?.amount}
+                                    </li>
+                                ))
+                            }
                         </ul>
-                        <Button onClick={createAccount} className="bg-[#0166FF] text-white rounded-[20px] h-[40px] flex justify-center items-center mt-4">
+                        <Button
+                            onClick={createAccount}
+                            className="bg-[#0166FF] text-white rounded-[20px] h-[40px] flex justify-center items-center mt-4"
+                        >
                             Add Record
                         </Button>
-
                     </div>
                 </div>
                 <div>
@@ -140,6 +154,6 @@ export const AddRecord = () => {
                     </div>
                 </div>
             </DialogContent>
-        </Dialog >
-    )
-}
+        </Dialog>
+    );
+};

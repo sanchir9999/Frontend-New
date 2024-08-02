@@ -9,9 +9,7 @@ const Page = () => {
                     <div className="flex flex-col items-center  justify-center bg-white gap-[40px]">
                         <img src="Frame 3.png" className="w-[172px] h-[64px]"></img>
                     </div>
-
                     <Loading />
-
                 </div>
             </div>
         </>

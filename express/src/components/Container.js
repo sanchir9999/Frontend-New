@@ -33,6 +33,7 @@ const data = [
 
 export const Container = () => {
 
+
     const [value, setValue] = useState([0, 1000]); // Slider-ийн үзүүлэлтийг хадгалах useState
 
     const handleChange = (newValue) => {

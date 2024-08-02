@@ -19,7 +19,7 @@ const ProgressBar = ({ duration, steps }) => {
     }, [step, duration, steps]);
 
     return (
-        <div style={{ width: '100%', backgroundColor: '#f3f3f3', height: '10px' }}>
+        <div style={{ width: '100%', backgroundColor: 'white', height: '10px' }}>
             <div
                 style={{
                     width: `${progress}%`,

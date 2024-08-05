@@ -1,45 +1,44 @@
 "use client";
 
+import { useState, useEffect } from 'react';
+import axios from 'axios'; // axios импортлох
 import { AddRecord } from './AddRecord';
-import { useEffect, useState } from 'react';
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Eyes } from "@/assets/Eyes";
 import { Nemeh } from "@/assets/Nemeh";
 import { Slider } from "./ui/slider";
-import { Sum } from "@/assets/Sum"
 import { ComboboxDemo } from './ComboboxDemo';
 import { ZuunSum } from '@/assets/ZuunSum';
 import { BaruunSum } from '@/assets/BaruunSum';
 import { Checkbox } from './ui/checkbox';
-import { House } from '@/assets/House';
-import { RedHouse } from '@/assets/RedHouse';
 
-const data = [
-    "Food & Drinks",
-    "Shopping",
-    "Housing",
-    "Transportation",
-    "Vehicle",
-    "Life & Entertainment",
-    "Communication, PC",
-    "Financial expenses",
-    "Investments",
-    "Income",
-    "Others",
-];
+
 
 export const Container = () => {
+    const [accounts, setAccounts] = useState([]); // useState ашиглах
+    const [value, setValue] = useState([0, 1000]);
 
-
-    const [value, setValue] = useState([0, 1000]); // Slider-ийн үзүүлэлтийг хадгалах useState
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await axios.get("http://localhost:3001/accounts");
+                if (Array.isArray(response.data)) {
+                    setAccounts(response.data);
+                } else {
+                    console.error("Expected array but got", response.data);
+                }
+            } catch (error) {
+                console.error("Error fetching accounts:", error);
+            }
+        };
+        getData();
+    }, []); // Зөвхөн анхдагч render-д ажиллах
 
     const handleChange = (newValue) => {
-        setValue(newValue); // Slider-ийн үзүүлэлт өөрчлөгдөх үед шинэчилнэ
+        setValue(newValue);
     };
-
     return (
         <>
             <div className=" m-auto bg-[#F3F4F6] pt-6">
@@ -80,17 +79,7 @@ export const Container = () => {
                                 <h3 className="font-semibold text-base">Category</h3>
                                 <h4 className="opacity-15">Clear</h4>
                             </div>
-                            {data.map((angiinner, i) => (
-                                <div key={i} className="flex flex-row justify-between items-center">
-                                    <div className="flex gap-2 ml-2 items-center">
-                                        <Eyes />
-                                        <p>{angiinner}</p>
-                                    </div>
-                                    <div>
-                                        <Sum />
-                                    </div>
-                                </div>
-                            ))}
+
                             <div className="flex items-center gap-[8px] px-3 py-1">
                                 <Nemeh />
                                 <h3>Add Category</h3>
@@ -125,12 +114,18 @@ export const Container = () => {
                                     <div className='text-[#94A3B8] font-semibold'>- 35,500₮</div>
                                 </div>
                                 <div className='flex flex-col gap-y-3'>
-
                                     <div className='font-semibold text-base pt-6'>Today</div>
-
+                                    <ul className="w-full border flex flex-col justify-between">
+                                        {
+                                            accounts.map((account, index) => (
+                                                <li key={account?.note + index} className="border">
+                                                    {account?.note} - {account?.amount}
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
                                 </div>
                                 <div className='w-[894px]'>
-
                                 </div>
                             </div>
                         </div>

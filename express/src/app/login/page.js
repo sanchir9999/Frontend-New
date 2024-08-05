@@ -15,7 +15,9 @@ const Page = () => {
                     <div className="flex flex-col justify-center gap-[16px] w-[384px]">
                         <Input placeholder="Email"></Input>
                         <Input placeholder="Password"></Input>
-                        <Button className="bg-[#0166FF] rounded-3xl">Log in</Button>
+                        <Link href="/loading" className="w-384[px]">
+                            <Button className="bg-[#0166FF] rounded-3xl w-full">Log in</Button>
+                        </Link>
                     </div>
                     <div>
                         <span>Don’t have account?</span>

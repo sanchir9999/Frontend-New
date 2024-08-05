@@ -16,7 +16,6 @@ export default function RootLayout({ children }) {
       <AddRecordContextProvider>
         <body className={inter.className}>{children}</body>
       </AddRecordContextProvider>
-
     </html>
   );
 }

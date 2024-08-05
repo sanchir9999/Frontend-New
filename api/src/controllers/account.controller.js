@@ -5,9 +5,13 @@ const path = require("path")
 const getAllAccounts = async (req, res) => {
     try {
         const filePath = path.join(__dirname, "..", "data", "accounts.json");
+
         const rawData = fs.readFileSync(filePath);
+
         const accounts = JSON.parse(rawData);
+
         res.json(accounts);
+
     } catch (error) {
         console.error(error)
         res.status(500).json({ error: "Iternal Server Error" });

@@ -1,57 +1,37 @@
 [
   {
-    "amount": "gfdgs",
-    "note": "fdsgdg"
+    "amount": "10000",
+    "category": "Cu",
+    "type": "Income"
   },
   {
-    "amount": "fdgsg",
-    "note": "gfdsgdsfg"
+    "amount": "2000",
+    "category": "Taxi",
+    "type": "Expense"
   },
   {
-    "amount": "fassafds",
-    "note": "sdadsadsadsa"
+    "amount": "50000",
+    "category": "Taxi",
+    "type": "Income"
   },
   {
-    "amount": "",
-    "note": "sdadsad"
+    "amount": "100000",
+    "category": "Taxi",
+    "type": "Expense"
   },
   {
-    "amount": "s",
-    "note": "s"
+    "amount": "2",
+    "category": "Taxi",
+    "type": "Income"
   },
   {
-    "amount": "ss",
-    "note": "s"
+    "amount": "10000",
+    "category": "Taxi",
+    "type": "Income"
   },
   {
-    "amount": "",
-    "note": ""
-  },
-  {
-    "amount": "sda",
-    "note": ""
-  },
-  {
-    "amount": "sda",
-    "note": ""
-  },
-  {
-    "amount": "sda",
-    "note": ""
-  },
-  {
-    "amount": "sss",
-    "note": ""
-  },
-  {
-    "amount": "sda"
-  },
-  {
-    "amount": "ыбйбый",
-    "category": "Dark"
-  },
-  {
-    "amount": "ыыыы",
-    "note": ""
+    "amount": "100000000",
+    "category": "Taxi",
+    "type": "Expense"
   }
 ]

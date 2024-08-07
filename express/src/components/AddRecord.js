@@ -11,20 +11,22 @@ export const AddRecord = ({ onRecordAdded, categories }) => {
     const [amount, setAmount] = useState("");
     const [selectedType, setSelectedType] = useState("Income");
     const [category, setCategory] = useState("");
+    const [calendarValue, setCalendarValue] = useState("");
+    const [timeValue, setTimeValue] = useState("");
 
     const handleClick = (type) => {
         setSelectedType(type);
     };
 
     const createAccount = async () => {
-        const newAccount = { amount, category, type: selectedType };
+        const newAccount = { amount, category, type: selectedType, date: calendarValue, time: timeValue };
         try {
             await axios.post("http://localhost:3001/accounts", newAccount);
             if (onRecordAdded) {
-                onRecordAdded(); // Data refresh
+                onRecordAdded(); // Мэдээллийг дахин ачаалах
             }
         } catch (error) {
-            console.error("Error adding record:", error);
+            console.error("Бичлэг нэмэхэд алдаа гарлаа:", error);
         }
     };
 
@@ -33,10 +35,10 @@ export const AddRecord = ({ onRecordAdded, categories }) => {
         try {
             await axios.post("http://localhost:3001/categories/create", newCategory);
             if (onRecordAdded) {
-                onRecordAdded(); // Data refresh
+                onRecordAdded(); // Мэдээллийг дахин ачаалах
             }
         } catch (error) {
-            console.error("Error adding category:", error);
+            console.error("Категори нэмэхэд алдаа гарлаа:", error);
         }
     };
 
@@ -52,7 +54,7 @@ export const AddRecord = ({ onRecordAdded, categories }) => {
             </DialogTrigger>
             <DialogContent className="w-[792px] flex flex-row items-start justify-between">
                 <div className="flex flex-col">
-                    <div>Нэмэх </div>
+                    <div>Нэмэх</div>
                     <div className="w-full">
                         <div className="flex mb-4 border-[1px] rounded-[20px] border-[#E5E7EB]">
                             <div
@@ -73,6 +75,7 @@ export const AddRecord = ({ onRecordAdded, categories }) => {
                         <div className="mb-4">
                             <span className="block mb-2">Дүн</span>
                             <Input
+                                placeholder="₮ 000.00"
                                 className="border"
                                 value={amount}
                                 onChange={(event) => setAmount(event.target.value)}
@@ -85,18 +88,27 @@ export const AddRecord = ({ onRecordAdded, categories }) => {
                                     <SelectValue placeholder="Сонгох" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Cu">Cu</SelectItem>
-                                    <SelectItem value="Taxi">Taxi</SelectItem>
-                                    <SelectItem value="Shop">Shop</SelectItem>
+                                    <SelectItem value="Food & Drinks">Food & Drinks</SelectItem>
+                                    <SelectItem value="Shopping">Shopping</SelectItem>
+                                    <SelectItem value="Transportation">Transportation</SelectItem>
+                                    <SelectItem value="Vehicle">Vehicle</SelectItem>
+                                    <SelectItem value="Life & Entertainment">Life & Entertainment</SelectItem>
+                                    <SelectItem value="Communication, PC">Communication, PC</SelectItem>
+                                    <SelectItem value="Financial expenses">Financial expenses</SelectItem>
+                                    <SelectItem value="Investments">Investments</SelectItem>
+                                    <SelectItem value="Income">Income</SelectItem>
+                                    <SelectItem value="Others">Others</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <CalendarForm />
+                                <CalendarForm
+                                    value={calendarValue} onValueChange={setCalendarValue} />
                             </div>
                             <div>
-                                <TimeForm />
+                                <TimeForm
+                                    value={timeValue} onValueChange={setTimeValue} />
                             </div>
                         </div>
                         <Button

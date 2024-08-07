@@ -1,37 +1,16 @@
 [
   {
-    "amount": "10000",
-    "category": "Cu",
-    "type": "Income"
-  },
-  {
-    "amount": "2000",
-    "category": "Taxi",
-    "type": "Expense"
-  },
-  {
-    "amount": "50000",
-    "category": "Taxi",
-    "type": "Income"
-  },
-  {
-    "amount": "100000",
-    "category": "Taxi",
-    "type": "Expense"
-  },
-  {
     "amount": "2",
-    "category": "Taxi",
-    "type": "Income"
+    "category": "Food & Drinks",
+    "type": "Income",
+    "date": "",
+    "time": ""
   },
   {
-    "amount": "10000",
-    "category": "Taxi",
-    "type": "Income"
-  },
-  {
-    "amount": "100000000",
-    "category": "Taxi",
-    "type": "Expense"
+    "amount": "67665",
+    "category": "Communication, PC",
+    "type": "Income",
+    "date": "",
+    "time": ""
   }
 ]

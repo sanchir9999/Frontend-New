@@ -53,17 +53,15 @@ export const Container = () => {
         setValue(newValue);
     };
 
-    // Calculate total income and expense
     const totalIncome = accounts
         .filter(account => account.type === 'Income')
-        .reduce((sum, account) => sum + account.amount, 0);
+        .reduce((sum, account) => sum + parseFloat(account.amount), 0);
 
     const totalExpense = accounts
         .filter(account => account.type === 'Expense')
-        .reduce((sum, account) => sum + account.amount, 0);
+        .reduce((sum, account) => sum + parseFloat(account.amount), 0);
 
     const balance = totalIncome - totalExpense;
-
     return (
         <>
             <div className="m-auto bg-[#F3F4F6] pt-6">

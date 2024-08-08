@@ -6,12 +6,12 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Nemeh } from "@/assets/Nemeh";
 import { Slider } from "./ui/slider";
 import { ComboboxDemo } from './ComboboxDemo';
 import { ZuunSum } from '@/assets/ZuunSum';
 import { BaruunSum } from '@/assets/BaruunSum';
 import { Checkbox } from './ui/checkbox';
+import { AddCategory } from './AddCategory';
 
 export const Container = () => {
     const [accounts, setAccounts] = useState([]);
@@ -108,8 +108,7 @@ export const Container = () => {
                                 ))}
                             </ul>
                             <div className="flex items-center gap-[8px] px-3 py-1">
-                                <Nemeh />
-                                <h3>Add Category</h3>
+                                <AddCategory />
                             </div>
                         </div>
                         <div>

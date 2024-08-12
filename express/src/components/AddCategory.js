@@ -40,9 +40,12 @@ export const AddCategory = () => {
     return (
         <>
             <Dialog>
-                <div className="border">
-                    <DialogTrigger><Nemeh /> Add Category</DialogTrigger>
-                </div>
+                <DialogTrigger>
+                    <div className="flex w-[248px] justify-start gap-[20px] items-center">
+                        <Nemeh />
+                        AddCategory
+                    </div>
+                </DialogTrigger>
                 <DialogContent className="w-[494px] h-[200px]">
                     <DialogHeader>
                         <DialogTitle>Add Category</DialogTitle>

@@ -101,8 +101,9 @@ export const Container = () => {
                                 <h4 className="opacity-15">Clear</h4>
                             </div>
                             <ul className="flex flex-col gap-2">
-                                {categories.map((category) => (
-                                    <li key={category.id} className="border-b py-2 px-4">
+                                {categories.map((category, index) => (
+                                    <li key={category.id} className="py-2 px-4 flex items-center">
+                                        <img src="/eyesicon.png" alt={`Eye icon for ${category.name}`} className="w-6 h-6 mr-2" />
                                         {category.name}
                                     </li>
                                 ))}
@@ -133,7 +134,6 @@ export const Container = () => {
                             </div>
                             <ComboboxDemo />
                         </div>
-
                         <div className=" h-[1080px] overflow-x-scroll flex gap-y-6 flex-col">
                             <div className="h-[980px] w-[894px]">
                                 <div className="flex w-full h-[64px] border-[1px] rounded-xl border-[#E5E7EB] justify-between items-center px-6">

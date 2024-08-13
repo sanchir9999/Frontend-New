@@ -1,7 +1,7 @@
 "use context"
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AddRecordContextProvider } from "@/components/utils/Context";
+import { AuthProvider } from "@/components/Providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,9 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <AddRecordContextProvider>
+      <AuthProvider>
         <body className={inter.className}>{children}</body>
-      </AddRecordContextProvider>
+      </AuthProvider>
+
     </html>
   );
 }

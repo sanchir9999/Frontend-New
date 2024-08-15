@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
     const [isChecking, setIsChecking] = useState(true);
 
     const login = async (email, password) => {
+
         try {
             const response = await api.post("/auth/login", { email, password });
             toast.success(response.data.message);

@@ -1,8 +1,19 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useAuth } from "@/components/Providers/AuthProvider";
 
 const Page = () => {
+    const [email, setemail] = useState("");
+    const [password, setpassword] = useState("");
+    const router = useRouter();
+    const [count, setCount] = useState(0);
+
+    const { login } = useAuth();
+
     return (
         <>
             <div className="grid grid-cols-2 gap-4 h-screen">
@@ -13,11 +24,30 @@ const Page = () => {
                         <span>Welcome back, Please enter your details</span>
                     </div>
                     <div className="flex flex-col justify-center gap-[16px] w-[384px]">
-                        <Input placeholder="Email"></Input>
-                        <Input placeholder="Password"></Input>
-                        <Link href="/loading" className="w-384[px]">
-                            <Button className="bg-[#0166FF] rounded-3xl w-full">Log in</Button>
-                        </Link>
+
+                        <Input
+                            placeholder="Email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => {
+                                setemail(e.target.value);
+                            }}
+                        ></Input>
+
+                        <Input
+                            placeholder="Password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => {
+                                setpassword(e.target.value);
+                            }}></Input>
+
+
+                        <Button className="bg-[#0166FF] rounded-3xl w-full"
+                            onClick={() => setlogin(email, password)}
+                        >Log in</Button>
+
+
                     </div>
                     <div>
                         <span>Don’t have account?</span>

@@ -2,15 +2,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "@/components/Providers/AuthProvider";
+
 
 const Page = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
-    const router = useRouter();
-    const [count, setCount] = useState(0);
+
 
     const { login } = useAuth();
 
@@ -41,10 +40,8 @@ const Page = () => {
                             onChange={(e) => {
                                 setpassword(e.target.value);
                             }}></Input>
-
-
                         <Button className="bg-[#0166FF] rounded-3xl w-full"
-                            onClick={() => setlogin(email, password)}
+                            onClick={() => login(email, password)}
                         >Log in</Button>
 
 

@@ -11,11 +11,12 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <AuthProvider>
-        <body className={inter.className}>{children}</body>
-      </AuthProvider>
-      <ToastContainer />
-
+      <body className={inter.className}>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+        <ToastContainer />
+      </body>
     </html>
   );
 }

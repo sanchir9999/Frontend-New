@@ -11,7 +11,7 @@ app.use(express.json())
 
 app.use("/accounts", accountRouter);
 app.use("/categories", categoryRouter);
-app.use("/users", userRouter);
+app.use("/user", userRouter);
 app.use(express.json());
 
 app.listen(3001, () => {

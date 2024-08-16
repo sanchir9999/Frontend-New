@@ -3,7 +3,7 @@ const { readJson } = require("../utils");
 const login = async (req, res) => {
     const { email, password } = req.body;
     console.log(req.body)
-    const users = readJson("user.Json");
+    const users = readJson("user.json");
     const user = users.find(
         (user) => user.email === email && user.password === password
     );

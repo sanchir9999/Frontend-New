@@ -14,15 +14,20 @@ export const AuthProvider = ({ children }) => {
     const [isChecking, setIsChecking] = useState(true);
 
     const login = async (email, password) => {
-
+        console.log(email, password);
         try {
+
+            console.log(email, password);
+
             const response = await api.post("/auth/login", { email, password });
+
             toast.success(response.data.message);
             setIsLoggedIn(true);
             localStorage.setItem("token", "token");
             router.push("/");
         } catch (error) {
-            toast.error(error.response.data.message);
+            console.log(error)
+            toast.error(error.message);
         }
     };
 

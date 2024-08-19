@@ -1,8 +1,8 @@
-const { readJson } = require("../utils");
-
+const { readJson } = require("../utils/index")
 const login = async (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body)
+    console.log(req.body, "===body");
+
     const users = readJson("user.json");
     const user = users.find(
         (user) => user.email === email && user.password === password

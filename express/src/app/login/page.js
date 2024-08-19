@@ -9,9 +9,8 @@ import { useAuth } from "@/components/Providers/AuthProvider";
 const Page = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
-
-
     const { login } = useAuth();
+
 
     return (
         <>

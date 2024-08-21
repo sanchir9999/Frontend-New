@@ -61,5 +61,40 @@
     "type": "Income",
     "date": "",
     "time": ""
+  },
+  {
+    "amount": "10000",
+    "category": "Communication, PC",
+    "type": "Income",
+    "date": "",
+    "time": ""
+  },
+  {
+    "amount": "10000",
+    "category": "Communication, PC",
+    "type": "Expense",
+    "date": "",
+    "time": ""
+  },
+  {
+    "amount": "10000",
+    "category": "Communication, PC",
+    "type": "Expense",
+    "date": "",
+    "time": ""
+  },
+  {
+    "amount": "10000",
+    "category": "Communication, PC",
+    "type": "Expense",
+    "date": "",
+    "time": ""
+  },
+  {
+    "amount": "10000",
+    "category": "Communication, PC",
+    "type": "Expense",
+    "date": "",
+    "time": ""
   }
 ]

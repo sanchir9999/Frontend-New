@@ -14,7 +14,7 @@ app.use("/accounts", accountRouter);
 app.use("/categories", categoryRouter);
 app.use("/user", userRouter);
 app.use("/auth", authRouter)
-// app.use(express.json());
+
 
 app.listen(3001, () => {
     console.log("Сервер ажиллаж байна 3001")

@@ -4,12 +4,8 @@ const path = require("path")
 
 const getAllAccounts = async (req, res) => {
     try {
-        const filePath = path.join(__dirname, "..", "data", "accounts.json");
-
-        const rawData = fs.readFileSync(filePath);
-
-        const accounts = JSON.parse(rawData);
-
+        const accounts = readJson("accounts.json");
+        const userAccounts = accounts.filter(item => item.userId === req.user.id);
         res.json(accounts);
 
     } catch (error) {

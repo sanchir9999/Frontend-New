@@ -22,7 +22,7 @@ const login = async (req, res) => {
             email: user.email,
             id: user.id,
         }
-    })
+    }) 
 
     if (
         user
@@ -36,7 +36,7 @@ const login = async (req, res) => {
 const register = async (req, res) => {
     const { username, email, password } = req.body;
     const users = readJson("user.json");
-    const ser = users.find((user) => user.email === email);
+    const user = users.find((user) => user.email === email);
     if (user) return res.status(400).json({
         message: "User already exists"
     });
@@ -52,4 +52,4 @@ const register = async (req, res) => {
 };
 
 
-module.exports = { login };
+module.exports = { login, register };

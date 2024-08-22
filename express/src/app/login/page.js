@@ -42,8 +42,6 @@ const Page = () => {
                         <Button className="bg-[#0166FF] rounded-3xl w-full"
                             onClick={() => login(email, password)}
                         >Log in</Button>
-
-
                     </div>
                     <div>
                         <span>Don’t have account?</span>

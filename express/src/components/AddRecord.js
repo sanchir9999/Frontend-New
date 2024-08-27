@@ -47,6 +47,7 @@ export const AddRecord = ({ onRecordAdded, categories }) => {
         await createCategory();
     };
 
+
     return (
         <Dialog>
             <DialogTrigger className="w-full bg-[#0166FF] text-white rounded-[20px] h-[40px] flex justify-center items-center">
